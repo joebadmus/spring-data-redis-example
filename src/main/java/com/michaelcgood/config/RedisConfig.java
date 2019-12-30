@@ -9,18 +9,19 @@ import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
-
 import com.michaelcgood.queue.MessagePublisher;
 import com.michaelcgood.queue.MessagePublisherImpl;
 import com.michaelcgood.queue.MessageSubscriber;
 
+
 @Configuration
 @ComponentScan("com.michaelcgood")
 public class RedisConfig {
-
     @Bean
     JedisConnectionFactory jedisConnectionFactory() {
-        return new JedisConnectionFactory();
+        JedisConnectionFactory redisConnectionFactory = new JedisConnectionFactory();
+        redisConnectionFactory.setHostName("redis");
+        return redisConnectionFactory;
     }
 
     @Bean
